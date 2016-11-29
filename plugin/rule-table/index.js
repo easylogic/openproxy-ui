@@ -1,6 +1,5 @@
 class RuleTable {
-    constructor ($dom, options) {
-        this.$el = $dom;
+    constructor (options) {
         this.options = options || {};
 
         this.initElement();
@@ -8,7 +7,28 @@ class RuleTable {
 
     initElement () {
 
+        this.$el = $("<div />").addClass('content-item plugin-rule-table');
+
+        let $group_list = $("<div class='group-list' />");
+
+        this.$group_toolbar = $("<div class='group-toolbar' />");
+        $group_list.append(this.$group_toolbar);
+        let $policy_table = $("<div class='policy-table' />");
+
+        this.$policy_toolbar = $("<div class='policy-toolbar' />");
+        $policy_table.append(this.$policy_toolbar);
+
+
+        this.$el.append($group_list);
+        this.$el.append($policy_table);
+
+        // rule list
+
         this.initEvent();
+    }
+
+    initTitle () {
+
     }
 
     initEvent() {

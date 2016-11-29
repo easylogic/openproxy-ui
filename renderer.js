@@ -2,10 +2,8 @@ const fs = require('fs');
 const PLUGIN_ROOT = __dirname + "/plugin";
 let  plugin_tables = {};
 
-function createPlugin(options, PluginClass) {
-    let $dom = $("<div />");
-
-    plugin_tables[options.name] = new PluginClass($dom, options);
+function createPlugin(plugin, options, PluginClass) {
+    plugin_tables[plugin] = new PluginClass(options);
 }
 
 
@@ -18,7 +16,7 @@ jui.ready(function () {
 
         let PluginClass = require(PLUGIN_ROOT + "/" + plugin);
 
-        createPanel(PluginObject, PluginClass);
+        createPanel(plugin, PluginObject, PluginClass);
     });
 
    
