@@ -1,0 +1,9 @@
+{
+  "name" : "Rule Table",
+  "version": "1.0",
+  "icon" : "",
+  "main" : "index.js",
+  "description": "Rule Table",
+  "license": "MIT",
+  "author" : "easylogic"
+}

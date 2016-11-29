@@ -2,21 +2,129 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Hello World!</title>
+    <title>Open Proxy for Frontend Development</title>
 
     <link rel="stylesheet" href="node_modules/jui/dist/ui.min.css" />
     <link rel="stylesheet" href="node_modules/jui/dist/ui-jennifer.min.css" />
-
+    <link rel="stylesheet" href="node_modules/jui-grid/dist/grid.min.css" />
+    <link rel="stylesheet" href="node_modules/jui-grid/dist/grid-jennifer.min.css" />
+    <link rel="stylesheet" href="resource/less/main.css" />
   </head>
   <body class="jui">
-    <h1>Hello World!</h1>
+    <div class="app-container">
+      <div class="app-menu">
+        <div class="app-title">ON Open Proxy</div>
+        <div class="app-menu-list">
+          <div class="menu">
+            <div class="menu-title">Main</div>
+            <div class="menu-items">
+              <a class="menu-item plugin-table" href="#"><i class="icon-table"></i> Table</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="app-content">
+        <h1 class="content-title"><i class="icon-table"></i> Table</h1>
+        <div class="content-list">
+          <div class="content-item plugin-table">
 
-    <button class="btn focus">Value</button>
+            <div class="group-list">
+              <div class="group-toolbar">
+                <a class="small link" href="#"><i class="icon-plus"></i> Category</a>
+                <a class="small delete" href="#"><i class="icon-trashcan"></i></a>
+              </div>
+              <div class="group-items">
+                <a class="group-item selected"><i class="icon-link"></i> fdsafdsaf</a>
+                <a class="group-item">fdsafdsaf</a>
+                <a class="group-item">fdsafdsaf</a>
+                <a class="group-item">fdsafdsaf</a>
+                <a class="group-item">fdsafdsaf</a>
+              </div>
 
-    <!-- All of the Node.js APIs are available in this renderer process. -->
-    We are using Node.js <script>document.write(process.versions.node)</script>,
-    Chromium <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
+            </div>
+            <div class="policy-table">
+              <div class="policy-toolbar">
+                <a class="small link" href="#"><i class="icon-plus"></i> Rule</a>
+                <div style="float:right">
+                  <a class="small link" href="#"><i class="icon-save"></i> Save rules</a>
+                </div>
+              </div>
+              <div class="policy-items">
+                <div class="panel">
+                  <div class="head">
+                    <strong> <i class="icon-checkbox check-status"></i> Source => Target</strong>
+                    <div style="float: right;">
+                      <i class="icon-trashcan"></i>
+                    </div>
+                  </div>
+                  <div class="body">
+                    <div class="type input-item">
+                      <label>Type</label>
+                      <label><input type="radio" value="host" name="id_1" /> HOST</label>
+                      <label><input type="radio" value="url" name="id_1" /> URL</label>
+                      <label><input type="radio" value="pattern" name="id_1" /> PATTERN</label>
+                    </div>
+                    <div class="source input-item"><label>Source</label> <input type="text" class="input" /></div>
+                    <div class="target input-item"><label>Target</label> <div class="group"><input type="text" class="input" /><a class="btn">STATUS <i class="icon-arrow2"></i></a><a class="btn"><i class="icon-report"></i></a><a class="btn"><i class="icon-add-dir"></i></a></div></div>
+                  </div>
+                </div>
+                <div class="panel">
+                  <div class="head">
+                    <strong> <i class="icon-checkbox check-status"></i> Source => Target</strong>
+                    <div style="float: right;">
+                      <i class="icon-trashcan"></i>
+                    </div>
+                  </div>
+                  <div class="body">
+                    <div class="source input-item"><label>Source</label> <input type="text" class="input" /></div>
+                    <div class="target input-item"><label>Target</label> <div class="group"><input type="text" class="input" /><a class="btn">STATUS <i class="icon-arrow2"></i></a><a class="btn"><i class="icon-report"></i></a><a class="btn"><i class="icon-add-dir"></i></a></div></div>
+                  </div>
+                </div>
+                <div class="panel">
+                  <div class="head">
+                    <strong> <i class="icon-checkbox check-status"></i> Source => Target</strong>
+                    <div style="float: right;">
+                      <i class="icon-trashcan"></i>
+                    </div>
+                  </div>
+                  <div class="body">
+                    <div class="source input-item"><label>Source</label> <input type="text" class="input" /></div>
+                    <div class="target input-item"><label>Target</label> <div class="group"><input type="text" class="input" /><a class="btn">STATUS <i class="icon-arrow2"></i></a><a class="btn"><i class="icon-report"></i></a><a class="btn"><i class="icon-add-dir"></i></a></div></div>
+                  </div>
+                </div>
+                <div class="panel">
+                  <div class="head">
+                    <strong> <i class="icon-checkbox check-status"></i> Source => Target</strong>
+                    <div style="float: right;">
+                      <i class="icon-trashcan"></i>
+                    </div>
+                  </div>
+                  <div class="body">
+                    <div class="source input-item"><label>Source</label> <input type="text" class="input" /></div>
+                    <div class="target input-item"><label>Target</label> <div class="group"><input type="text" class="input" /><a class="btn">STATUS <i class="icon-arrow2"></i></a><a class="btn"><i class="icon-report"></i></a><a class="btn"><i class="icon-add-dir"></i></a></div></div>
+                  </div>
+                </div>
+                <div class="panel">
+                  <div class="head">
+                    <strong> <i class="icon-checkbox check-status"></i> Source => Target</strong>
+                    <div style="float: right;">
+                      <i class="icon-trashcan"></i>
+                    </div>
+                  </div>
+                  <div class="body">
+                    <div class="source input-item"><label>Source</label> <input type="text" class="input" /></div>
+                    <div class="target input-item"><label>Target</label> <div class="group"><input type="text" class="input" /><a class="btn">STATUS <i class="icon-arrow2"></i></a><a class="btn"><i class="icon-report"></i></a><a class="btn"><i class="icon-add-dir"></i></a></div></div>
+                  </div>
+                </div>
+
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 
   <script type="text/javascript">

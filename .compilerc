@@ -1,0 +1,8 @@
+{
+  "application/javascript": {
+    "passthrough": true
+  },
+  "text/less": {
+    "dumpLineNumbers": "comments"
+  }
+}

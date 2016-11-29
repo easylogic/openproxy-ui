@@ -17,13 +17,18 @@
   "author": "easylogic",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^1.4.1"
+    "babel-preset-es2016-node5": "^1.1.2",
+    "electron": "^1.4.1",
+    "electron-compilers": "^4.0.5"
   },
   "dependencies": {
+    "electron-compile": "^4.0.2",
+    "electron-reload": "^1.0.3",
     "jquery": "^3.1.1",
     "jui": "^2.0.3",
     "jui-chart": "^2.0.4",
     "jui-core": "^2.0.4",
-    "jui-grid": "^2.0.2"
+    "jui-grid": "^2.0.2",
+    "openproxy": "0.0.2"
   }
 }

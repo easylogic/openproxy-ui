@@ -1,0 +1,200 @@
+.plugin-table {
+
+  .group-list {
+    position:absolute;
+    left:0px;
+    top:0px;
+    bottom:0px;
+    width:200px;
+    padding-top:30px;
+
+    .group-toolbar{
+      position:absolute;
+      left:0px;
+      right:0px;
+      top:0px;
+      height:30px;
+      box-sizing:border-box;
+      padding:4px 10px;
+
+      .link {
+        border:0px;
+        color:rgba(0, 0, 0, 0.8);
+        vertical-align: middle;
+        text-decoration: none;
+
+        i {
+          display: inline-block;
+          vertical-align: middle;
+        }
+      }
+
+      .delete {
+        float:right;
+        color: rgba(255, 0, 0, 0.8);
+        font-weight:bold;
+        display:inline-block;
+        line-height:20px;
+        vertical-align: middle;
+        i {
+          display: inline-block;
+          vertical-align: middle;
+        }
+      }
+    }
+
+    .group-items {
+      position:absolute;
+      left:0px;
+      right:0px;
+      bottom:0px;
+      top:30px;
+      overflow-y:auto;
+      box-sizing:border-box;
+      border:1px solid #ececec;
+
+      .group-item {
+        display:block;
+        padding:10px;
+        cursor:pointer;
+        box-sizing:border-box;
+        border-bottom:1px solid #ececec;
+
+        &.selected {
+          background-color: #364251;
+          color:white;
+        }
+
+      }
+    }
+
+
+  }
+
+  .policy-table {
+
+    position:absolute;
+    right:0px;
+    left:210px;
+    top:0px;
+    bottom:0px;
+    overflow:auto;
+    box-sizing:border-box;
+
+    .policy-toolbar {
+      position:absolute;
+      left:0px;
+      right:0px;
+      top:0px;
+      height:30px;
+      box-sizing:border-box;
+      padding:4px 10px;
+
+      .link {
+        border:0px;
+        color:rgba(0, 0, 0, 0.8);
+        vertical-align: middle;
+        text-decoration: none;
+
+        i {
+          display: inline-block;
+          vertical-align: middle;
+        }
+      }
+
+      .delete {
+        float:right;
+        color: rgba(255, 0, 0, 0.8);
+        font-weight:bold;
+        display:inline-block;
+        line-height:20px;
+        vertical-align: middle;
+        i {
+          display: inline-block;
+          vertical-align: middle;
+        }
+      }
+    }
+
+    .policy-items {
+      position:absolute;
+      left:0px;
+      right:0px;
+      bottom:0px;
+      top:30px;
+
+      .panel {
+        .head {
+          border-radius:0px !important;
+          background-image:none;
+          cursor: pointer;
+
+          i[class*='checkbox'] {
+            color: #364251;
+            font-size:14px;
+            vertical-align: middle;
+            display:inline-block;
+          }
+
+          i[class*='icon-trashcan'] {
+            color:rgba(255, 0, 0, 1);
+          }
+        }
+        .body {
+          border-radius:0px !important;
+
+          .input-item {
+            margin-bottom:5px;
+
+            label {
+              font-weight:bold;
+
+              &:first-child {
+                display:inline-block;
+                width:40px;
+                text-align:right;
+                margin-right:10px;
+              }
+            }
+
+            input[type=text] {
+              width:300px;
+            }
+
+            input[type=radio] {
+              display: inline-block;
+              vertical-align: middle;
+            }
+
+            .group>*+:not(ul) {
+              margin-left: -1px !important;
+            }
+          }
+        }
+
+
+        &:not(.selected) > .body {
+          display:none;
+        }
+
+        &.selected > .head {
+          background-color: #6c84a2;
+          color:white;
+
+          i[class*='checkbox'] {
+            color:white;
+          }
+        }
+
+        &.selected > .body {
+          display:block;
+        }
+      }
+
+
+    }
+
+
+
+  }
+}

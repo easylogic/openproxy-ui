@@ -1,0 +1,115 @@
+.app-container {
+  position:fixed;
+  left:0px;
+  right:0px;
+  bottom:0px;
+  top:0px;
+  font-size:13px;
+  font-family: Consolas, "돋움";
+}
+
+.app-menu {
+  position:absolute;
+  left:0px;
+  top:0px;
+  bottom:0px;
+  width:200px;
+  background-color:#364251;
+
+  .app-title {
+    position:absolute;
+    left:0px;
+    top:0px;
+    right:0px;
+    height:80px;
+    background-color:#9663f4;
+    color:rgba(255, 255, 255, 0.8);
+    box-sizing:border-box;
+    padding:20px;
+  }
+
+  .app-menu-list {
+    position:absolute;
+    left:0px;
+    top:100px;
+    right:0px;
+    bottom:0px;
+    padding:0px 20px;
+
+    .menu {
+      color:#FFFFFF;
+
+      .menu-title {
+        font-size:15px;
+        color: rgba(255, 255, 255, 0.8);
+        margin-top:20px;
+        margin-bottom:10px;
+      }
+
+      .menu-items {
+        .menu-item {
+
+          display:inline-block;
+          vertical-align: middle;
+          color:rgba(255, 255, 255, 1);
+          text-decoration:none;
+          outline:none;
+
+          i {
+            display:inline-block;
+            margin-right:10px;
+          }
+
+        }
+      }
+    }
+  }
+
+}
+
+.app-content {
+  position:absolute;
+  left:200px;
+  top:0px;
+  right:0px;
+  bottom:0px;
+  background-color:#ffffff;
+
+  box-sizing: border-box;
+
+  .content-title {
+    position:absolute;
+    top:0px;
+    left:0px;
+    right:0px;
+    height:70px;
+    font-size:24px;
+    margin:0px;
+    box-sizing:border-box;
+    padding:10px;
+  }
+
+  .content-list {
+    position:absolute;
+    left:0px;
+    right:0px;
+    top:80px;
+    bottom:0px;
+
+    .content-item {
+      position:absolute;
+      left:0px;
+      right:0px;
+      bottom:0px;
+      top:0px;
+      overflow:auto;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      margin:10px;
+    }
+  }
+
+}
+
+@import "./table.less";

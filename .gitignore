@@ -1,1 +1,4 @@
-node_modules
+*.iml
+
+node_modules/
+.idea/
