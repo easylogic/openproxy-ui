@@ -1,0 +1,29 @@
+{
+  "name": "easyproxy",
+  "version": "1.0.0",
+  "description": "Open Proxy for Front-End developers.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/electron/electron-quick-start",
+  "keywords": [
+    "Electron",
+    "OpenProxy",
+    "FrontEnd",
+    "Debug",
+    "Tool"
+  ],
+  "author": "easylogic",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^1.4.1"
+  },
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "jui": "^2.0.3",
+    "jui-chart": "^2.0.4",
+    "jui-core": "^2.0.4",
+    "jui-grid": "^2.0.2"
+  }
+}
