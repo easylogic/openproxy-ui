@@ -1,0 +1,37 @@
+{{#rules}}
+<div class="rule-item panel">
+    <div class="head">
+        <strong> <i class="icon-checkbox check-status"></i> <span class='preview-text'>[<span class="preview-type">{{type}}</span>] <span class="preview-source">{{source}}</span> -> <span class="preview-target">{{target}}</span> </span></strong>
+        <div style="float: right;">
+            <i class="icon-trashcan delete-rule"></i>
+            <span class="divider">|</span>
+            <i class="icon-arrow3 up-rule" title="up"></i>
+            <i class="icon-arrow1 down-rule" title="down"></i>
+        </div>
+    </div>
+    <div class="body">
+        <div class="type input-item">
+            <label>Type</label>
+            <label><input type="radio" value="host" name="type_{{typeGroupName}}" {{#isHost}}checked{{/isHost}} /> HOST</label>
+            <label><input type="radio" value="url" name="type_{{typeGroupName}}" {{#isUrl}}checked{{/isUrl}}/> URL</label>
+            <label><input type="radio" value="pattern" name="type_{{typeGroupName}}" {{#isPattern}}checked{{/isPattern}}/> PATTERN</label>
+        </div>
+        <div class="source input-item">
+            <label>Source</label>
+            <input type="text" class="input" value="{{source}}" placeholder="www.example.com"/></div>
+        <div class="target input-item">
+            <label>Target</label>
+            <div class="group">
+                <input type="text" class="input target-input" value="{{target}}" placeholder="www.next.com" /><a class="btn">STATUS <i class="icon-arrow2"></i></a><a class="btn"><i class="icon-report"></i></a><a class="btn"><i class="icon-add-dir"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+{{/rules}}
+{{^rules}}
+<div class="rule-item panel empty">
+    <div class="head">
+        <span class='preview-text'>add a rule for reverse proxy</span>
+    </div>
+</div>
+{{/rules}}

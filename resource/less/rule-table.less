@@ -1,4 +1,9 @@
-.plugin-table {
+.plugin-rule-table {
+  position:absolute;
+  left:0px;
+  right:0px;
+  top:0px;
+  bottom:0px;
 
   .group-list {
     position:absolute;
@@ -13,9 +18,10 @@
       left:0px;
       right:0px;
       top:0px;
-      height:30px;
+      height:40px;
       box-sizing:border-box;
-      padding:4px 10px;
+      padding:10px 10px;
+      border:1px solid #ececec;
 
       .link {
         border:0px;
@@ -48,10 +54,11 @@
       left:0px;
       right:0px;
       bottom:0px;
-      top:30px;
+      top:40px;
       overflow-y:auto;
       box-sizing:border-box;
       border:1px solid #ececec;
+      border-top:0px;
 
       .group-item {
         display:block;
@@ -71,24 +78,24 @@
 
   }
 
-  .policy-table {
+  .rule-list {
 
     position:absolute;
     right:0px;
     left:210px;
     top:0px;
     bottom:0px;
-    overflow:auto;
     box-sizing:border-box;
 
-    .policy-toolbar {
+    .rule-toolbar {
       position:absolute;
       left:0px;
       right:0px;
       top:0px;
-      height:30px;
+      height:40px;
       box-sizing:border-box;
-      padding:4px 10px;
+      padding:10px 10px;
+      border:1px solid #ececec;
 
       .link {
         border:0px;
@@ -116,18 +123,29 @@
       }
     }
 
-    .policy-items {
+    .rule-items {
       position:absolute;
       left:0px;
       right:0px;
       bottom:0px;
-      top:30px;
+      top:40px;
+      overflow: auto;
 
       .panel {
+        margin-top:4px;
+
         .head {
           border-radius:0px !important;
           background-image:none;
           cursor: pointer;
+
+          .preview-type {
+            text-transform: uppercase;
+          }
+
+          .divider {
+            color: #b1b1b1;
+          }
 
           i[class*='checkbox'] {
             color: #364251;
@@ -161,6 +179,10 @@
               width:300px;
             }
 
+            input.target-input {
+             // width:250px;
+            }
+
             input[type=radio] {
               display: inline-block;
               vertical-align: middle;
@@ -172,23 +194,6 @@
           }
         }
 
-
-        &:not(.selected) > .body {
-          display:none;
-        }
-
-        &.selected > .head {
-          background-color: #6c84a2;
-          color:white;
-
-          i[class*='checkbox'] {
-            color:white;
-          }
-        }
-
-        &.selected > .body {
-          display:block;
-        }
       }
 
 

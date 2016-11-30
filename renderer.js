@@ -1,25 +1,9 @@
-const fs = require('fs');
-const PLUGIN_ROOT = __dirname + "/plugin";
-let  plugin_tables = {};
-
-function createPlugin(options, PluginClass) {
-    let $dom = $("<div />");
-
-    plugin_tables[options.name] = new PluginClass($dom, options);
-}
-
+const App = require("./App");
 
 jui.ready(function () {
 
-    let plugins = fs.readdirSync(PLUGIN_ROOT);
+    window.app = new App();
 
-    plugins.forEach(function(plugin) {
-        let PluginObject = JSON.parse(fs.readFileSync(PLUGIN_ROOT + "/" + plugin + "/package.json") + "");
+    $('body').append(window.app.$el);
 
-        let PluginClass = require(PLUGIN_ROOT + "/" + plugin);
-
-        createPanel(PluginObject, PluginClass);
-    });
-
-   
 });

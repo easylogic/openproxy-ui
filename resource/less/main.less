@@ -1,3 +1,45 @@
+::-webkit-scrollbar {
+  background: transparent;
+  overflow: visible;
+  width: 17px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border: solid #fff;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+  border-width: 4px 6px;
+  min-width: 40px;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+  border-width: 6px 4px;
+  min-height: 40px;
+}
+
+::-webkit-scrollbar-track-piece {
+  background-color: #fff;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ADADAD;
+  -webkit-box-shadow: inset 1px 1px 0 rgba(0,0,0,0.10),inset 0 -1px 0 rgba(0,0,0,0.07);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #999;
+}
+
 .app-container {
   position:fixed;
   left:0px;
@@ -87,6 +129,15 @@
     margin:0px;
     box-sizing:border-box;
     padding:10px;
+
+
+    .description {
+      color:#a9a9a9;
+
+      &.small {
+        font-size:12px;
+      }
+    }
   }
 
   .content-list {
@@ -112,4 +163,4 @@
 
 }
 
-@import "./table.less";
+@import "./rule-table.less";
