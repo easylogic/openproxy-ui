@@ -11,6 +11,7 @@ module.exports = class App extends PluginCore {
         this.plugin_root = __dirname + "/plugin";
         this.plugin_instances = {};
         this.plugin_tables = [];
+        this.swtich = null;
 
         this.initElement();
         this.loadPlugins();
@@ -30,6 +31,8 @@ module.exports = class App extends PluginCore {
 
         this.$menu_items = this.find(".menu-items");
         this.$app_content = this.find(".app-content");
+
+        this.switch = jui.create("ui.switch", this.find(".proxy-switch"));
 
         this.initEvent ()
     }
@@ -63,7 +66,7 @@ module.exports = class App extends PluginCore {
 
     selectMenu(name) {
         this.$menu_items.find(".selected").removeClass('selected');
-        this.$menu_items.find(".plugin-" + name).addClass('selected');
+        this.$menu_items.find("[data-name='" + name + "']").addClass('selected');
     }
 
     showPlugin(name) {
@@ -79,8 +82,17 @@ module.exports = class App extends PluginCore {
         this.$app_content.find(".plugin-" + name).html(this.plugin_instances[name].$el);
     }
 
-    initEvent () {
+    switchOn (isOn) {
+        this.set('on', isOn);
 
+        // 프록시 설정을 어떻게 해야하나
+    }
+
+    initEvent () {
+        let that = this;
+        this.switch.on('change', function () {
+            that.switchOn(this.getValue());
+        })
     }
 
     addPlugin(options, PluginClass) {

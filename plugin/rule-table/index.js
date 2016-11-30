@@ -15,6 +15,8 @@ class RuleTable extends PluginCore{
 
     load () {
         this.rule_table = this.get('rule_table') || [];
+
+        this.reload();
     }
 
     getTemplateRoot () {
@@ -52,11 +54,19 @@ class RuleTable extends PluginCore{
     }
 
     reloadRules () {
+        // set group name
+        this.find(".group-name").val(this.getSelectedGroupTitle());
+
+        // set rules
         this.$rule_items.empty();
         
-        var index = this.$group_items.find(".group-item.selected").index();
+        var index = this.getSelectedGroupIndex();
 
         var groups = this.rule_table[index] || { rules : [] };
+
+        for(var i = 0, len = groups.rules.length; i < len; i++) {
+            groups.rules[i] = this.checkRuleType(groups.rules[i]);
+        }
 
         this.$rule_items.html(this.tpl('rule-item', { rules : groups.rules } ));
     }
@@ -152,6 +162,7 @@ class RuleTable extends PluginCore{
         $rule_item.find(".preview-type").text(obj.type);
         $rule_item.find(".preview-source").text(obj.source);
         $rule_item.find(".preview-target").text(obj.target);
+
     }
 
     reindexRuleItem () {
@@ -168,6 +179,7 @@ class RuleTable extends PluginCore{
         }
 
         $rule_item[0].scrollIntoView();
+
     }
 
     downRule ($rule_item) {
@@ -178,6 +190,11 @@ class RuleTable extends PluginCore{
         }
 
         $rule_item[0].scrollIntoView();
+
+    }
+
+    getSelectedGroupTitle () {
+        return this.$group_items.find(".selected .title").text();
     }
 
     getSelectedGroupIndex () {
@@ -189,7 +206,8 @@ class RuleTable extends PluginCore{
             checked: $rule_item.find(".check-status").hasClass('icon-checkbox'),
             type: $rule_item.find("input[type=radio]:checked").val(),
             source: $rule_item.find(".source input[type=text]").val(),
-            target: $rule_item.find(".target input[type=text]").val()
+            target: $rule_item.find(".target input[type=text]").val(),
+            summary: $rule_item.find(".summary input[type=text]").val()
         }
 
         return obj;
@@ -205,10 +223,34 @@ class RuleTable extends PluginCore{
         return list;
     }
 
-    saveRules () {
+    saveConfig () {
+
         var index = this.getSelectedGroupIndex();
 
-        this.rule_table[index] = Object.assign(this.rule_table[index], {  ruels : this.generateRules() });
+        this.rule_table[index] = Object.assign(
+            this.rule_table[index] || {},
+            { name : this.getSelectedGroupTitle(), rules : this.generateRules() }
+        );
+
+        this.set('rule_table', this.rule_table);
+    }
+
+    saveRules () {
+
+        if (this.saveTimer) {
+            clearTimeout(this.saveTimer);
+        }
+
+        let that = this;
+        this.saveTimer = setTimeout(function () {
+            that.saveConfig();
+        }, 300);
+
+    }
+
+    saveGroupName () {
+        let title = this.find(".group-name").val();
+        this.$group_items.find(".selected .title").text(title);
     }
 
     initEvent() {
@@ -217,9 +259,11 @@ class RuleTable extends PluginCore{
         
         this.find(".add-group").on('click', function () {
             that.addGroup();
+            that.saveRules();
         });
         this.find(".delete-group").on('click', function () {
             that.deleteGroup();
+            that.saveRules();
         });
         this.find(".reload-group").on('click', function () {
             that.reload();
@@ -235,8 +279,22 @@ class RuleTable extends PluginCore{
         });
         
         this.find(".add-rule").on('click', function () {
-           that.addRule(); 
+           that.addRule();
+
+           that.saveRules();
         });
+
+        this.find(".group-name").on('input', function () {
+            that.saveGroupName();
+
+            that.saveRules();
+        })
+
+        this.find(".save-group-name").on('click', function () {
+            that.saveGroupName();
+
+            that.saveRules();
+        })
 
         this.$rule_items.on("click", ".check-status", function (e) {
             e.preventDefault();
@@ -246,28 +304,39 @@ class RuleTable extends PluginCore{
                 $(this).addClass('icon-checkbox').removeClass('icon-checkbox2');
             }
             that.reloadPreview($(this).closest('.rule-item'));
+
+            that.saveRules();
         });
         this.$rule_items.on("click", ".icon-trashcan", function (e) {
             if (confirm("Delete a rule?")) {
                 $(this).closest(".rule-item").remove();
+
+                that.saveRules();
             }
-            e.preventDefault();
-            return;
         })
 
         this.$rule_items.on('click', 'input[type=radio]', function (e) {
             that.reloadPreview($(this).closest('.rule-item'));
+
+            that.saveRules();
         })
 
         this.$rule_items.on('input', 'input[type=text]', function (e) {
             that.reloadPreview($(this).closest('.rule-item'));
+
+            that.saveRules();
         })
 
         this.$rule_items.on('click', '.up-rule', function () {
             that.upRule($(this).closest('.rule-item'));
+
+            that.saveRules();
+
         });
         this.$rule_items.on('click', '.down-rule', function () {
             that.downRule($(this).closest('.rule-item'));
+
+            that.saveRules();
         });
     }
 }

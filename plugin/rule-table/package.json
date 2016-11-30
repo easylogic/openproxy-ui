@@ -1,7 +1,7 @@
 {
   "name" : "rule-table",
   "version": "1.0",
-  "icon" : "",
+  "icon" : "icon-table",
   "main" : "index.js",
   "title" : "Rule Table",
   "description": "Support Rule Table for reverse proxy",

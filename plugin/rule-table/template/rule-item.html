@@ -12,18 +12,26 @@
     <div class="body">
         <div class="type input-item">
             <label>Type</label>
-            <label><input type="radio" value="host" name="type_{{typeGroupName}}" {{#isHost}}checked{{/isHost}} /> HOST</label>
-            <label><input type="radio" value="url" name="type_{{typeGroupName}}" {{#isUrl}}checked{{/isUrl}}/> URL</label>
-            <label><input type="radio" value="pattern" name="type_{{typeGroupName}}" {{#isPattern}}checked{{/isPattern}}/> PATTERN</label>
+            <label class="input-radio"><input type="radio" value="host" name="type_{{typeGroupName}}" {{#isHost}}checked{{/isHost}} /> HOST </label>
+            <label class="input-radio"><input type="radio" value="url" name="type_{{typeGroupName}}" {{#isUrl}}checked{{/isUrl}}/> URL </label>
+            <label class="input-radio"><input type="radio" value="pattern" name="type_{{typeGroupName}}" {{#isPattern}}checked{{/isPattern}}/> PATTERN </label>
         </div>
         <div class="source input-item">
             <label>Source</label>
             <input type="text" class="input" value="{{source}}" placeholder="www.example.com"/></div>
         <div class="target input-item">
             <label>Target</label>
+            <input type="text" class="input target-input" value="{{target}}" placeholder="www.next.com" />
+        </div>
+        <div class="input-item">
+            <label></label>
             <div class="group">
-                <input type="text" class="input target-input" value="{{target}}" placeholder="www.next.com" /><a class="btn">STATUS <i class="icon-arrow2"></i></a><a class="btn"><i class="icon-report"></i></a><a class="btn"><i class="icon-add-dir"></i></a>
+                <a class="btn"> <i class="icon-message"></i> STATUS <i class="icon-arrow2"></i></a><a class="btn"><i class="icon-report"></i> File</a><a class="btn"><i class="icon-add-dir"></i> Directory</a>
             </div>
+        </div>
+        <div class="summary input-item">
+            <label>Summary</label>
+            <input type="text" class="input summary-input" value="{{summary}}" placeholder="Type a summary" />
         </div>
     </div>
 </div>

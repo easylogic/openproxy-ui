@@ -97,16 +97,25 @@
       padding:10px 10px;
       border:1px solid #ececec;
 
+      i {
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      .group-name {
+        width:300px;
+        display:inline-block;
+        vertical-align: middle;
+
+      }
+
       .link {
         border:0px;
         color:rgba(0, 0, 0, 0.8);
         vertical-align: middle;
         text-decoration: none;
 
-        i {
-          display: inline-block;
-          vertical-align: middle;
-        }
+
       }
 
       .delete {
@@ -135,7 +144,6 @@
         margin-top:4px;
 
         .head {
-          border-radius:0px !important;
           background-image:none;
           cursor: pointer;
 
@@ -159,10 +167,14 @@
           }
         }
         .body {
-          border-radius:0px !important;
 
           .input-item {
             margin-bottom:5px;
+
+            i {
+              display:inline-block;
+              vertical-align: middle;
+            }
 
             label {
               font-weight:bold;
@@ -173,6 +185,10 @@
                 text-align:right;
                 margin-right:10px;
               }
+
+              &.input-radio {
+                margin-right:10px;
+              }
             }
 
             input[type=text] {
@@ -181,6 +197,8 @@
 
             input.target-input {
              // width:250px;
+              vertical-align:middle;
+              display:inline-block;
             }
 
             input[type=radio] {

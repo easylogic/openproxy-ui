@@ -47,7 +47,7 @@
   bottom:0px;
   top:0px;
   font-size:13px;
-  font-family: Consolas, "돋움";
+  font-family: "Courier New", "돋움";
 }
 
 .app-menu {
@@ -64,16 +64,31 @@
     top:0px;
     right:0px;
     height:80px;
-    background-color:#9663f4;
-    color:rgba(255, 255, 255, 0.8);
+    /* fallback for old browsers */
+    background: #364251;
+    color:rgba(0, 0, 0, 0.8);
+    vertical-align: middle;
     box-sizing:border-box;
     padding:20px;
+    
+    .text {
+      display:inline-block;
+      vertical-align: middle;
+      color:#FFFFFF;
+      font-size:16px;
+      font-weight:bold;
+
+    }
+
+    .switch {
+      vertical-align: middle;
+    }
   }
 
   .app-menu-list {
     position:absolute;
     left:0px;
-    top:100px;
+    top:80px;
     right:0px;
     bottom:0px;
     padding:0px 20px;
@@ -89,8 +104,18 @@
       }
 
       .menu-items {
+        margin-top:10px;
         .menu-item {
 
+          padding:10px;
+
+          &.selected {
+            background-color:rgba(255, 255, 255, 0.1);
+            border-radius:5px;
+          }
+
+          width:100%;
+          box-sizing:border-box;
           display:inline-block;
           vertical-align: middle;
           color:rgba(255, 255, 255, 1);
@@ -100,6 +125,7 @@
           i {
             display:inline-block;
             margin-right:10px;
+            vertical-align: middle;
           }
 
         }
