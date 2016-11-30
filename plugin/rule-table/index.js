@@ -21,7 +21,7 @@ class RuleTable extends PluginCore{
         return path.join(__dirname, "template");
     }
 
-    find (selector) { 
+    find (selector) {
         return this.$el.find(selector);
     }
 
@@ -60,12 +60,27 @@ class RuleTable extends PluginCore{
 
         this.$rule_items.html(this.tpl('rule-item', { rules : groups.rules } ));
     }
+
+    selectGroup ($group_item) {
+
+        if (!$group_item.hasClass('selected')) {
+            this.$group_items.find(".selected").removeClass('selected');
+            $group_item.addClass('selected');
+
+            this.reloadRules();
+        }
+    }
     
     addGroup () {
         let groups = [];
         
         groups.push({ selected : false, name : "New Group" });
-        this.$group_items.append(this.tpl('group-item', { groups : groups }) );
+
+        let $group = $(this.tpl('group-item', { groups : groups }));
+
+        this.$group_items.append( $group );
+
+        this.selectGroup($group);
     }
 
     deleteGroup () {
@@ -118,9 +133,7 @@ class RuleTable extends PluginCore{
         
         let rules = [];
         
-        rules = [
-            this.checkRuleType({ source : '', target : '', type : 'host' })
-        ]
+        rules.push( this.checkRuleType({ checked : true, source : '', target : '', type : 'host' }));
 
         let $item = $(this.tpl('rule-item', { rules :  rules } ));
 
@@ -132,10 +145,13 @@ class RuleTable extends PluginCore{
     }
 
     reloadPreview ($rule_item) {
-        $rule_item.find(".check-status").attr('title', $rule_item.find(".check-status").hasClass('icon-checkbox') ? 'Apply rule' : 'Don\'t apply rule');
-        $rule_item.find(".preview-type").text($rule_item.find("input[type=radio]:checked").val());
-        $rule_item.find(".preview-source").text($rule_item.find(".source input[type=text]").val());
-        $rule_item.find(".preview-target").text($rule_item.find(".target input[type=text]").val());
+
+        var obj = this.generateRuleItem($rule_item);
+
+        $rule_item.find(".check-status").attr('title', obj.checked  ? 'Apply rule' : 'Don\'t apply rule');
+        $rule_item.find(".preview-type").text(obj.type);
+        $rule_item.find(".preview-source").text(obj.source);
+        $rule_item.find(".preview-target").text(obj.target);
     }
 
     reindexRuleItem () {
@@ -164,6 +180,37 @@ class RuleTable extends PluginCore{
         $rule_item[0].scrollIntoView();
     }
 
+    getSelectedGroupIndex () {
+        return this.$group_items.find(".selected").index();
+    }
+
+    generateRuleItem ($rule_item) {
+        let obj = {
+            checked: $rule_item.find(".check-status").hasClass('icon-checkbox'),
+            type: $rule_item.find("input[type=radio]:checked").val(),
+            source: $rule_item.find(".source input[type=text]").val(),
+            target: $rule_item.find(".target input[type=text]").val()
+        }
+
+        return obj;
+    }
+
+    generateRules () {
+        let list = [];
+        const that = this;
+        this.$rule_items.find(".rule-item").each(function() {
+            list.push(that.generateRuleItem($(this)));
+        })
+
+        return list;
+    }
+
+    saveRules () {
+        var index = this.getSelectedGroupIndex();
+
+        this.rule_table[index] = Object.assign(this.rule_table[index], {  ruels : this.generateRules() });
+    }
+
     initEvent() {
 
         const that = this;
@@ -177,16 +224,14 @@ class RuleTable extends PluginCore{
         this.find(".reload-group").on('click', function () {
             that.reload();
         });
+        this.find(".save-rules").on('click', function () {
+            that.saveRules();
+        });
 
 
         this.$group_items.on('click', ".group-item", function () {
 
-            if (!$(this).hasClass('selected')) {
-                that.$group_items.find(".selected").removeClass('selected');
-                $(this).addClass('selected');
-
-                that.reloadRules();
-            }
+            that.selectGroup($(this));
         });
         
         this.find(".add-rule").on('click', function () {
