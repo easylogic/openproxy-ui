@@ -1,9 +1,10 @@
 {
-  "name" : "Rule Table",
+  "name" : "rule-table",
   "version": "1.0",
   "icon" : "",
   "main" : "index.js",
-  "description": "Rule Table",
+  "title" : "Rule Table",
+  "description": "Support Rule Table for reverse proxy",
   "license": "MIT",
   "author" : "easylogic"
 }
