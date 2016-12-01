@@ -1,15 +1,14 @@
 const path = require('path');
 const fs = require('fs');
 const PluginCore = require('../../lib/PluginCore');
+const HttpStatus = require('./HttpStatus');
 
 class RuleTable extends PluginCore{
     constructor (options) {
         super(options);
 
         this.$el = $("<div class='rule-table' />");
-
         this.initElement();
-
         this.load();
     }
 
@@ -253,6 +252,58 @@ class RuleTable extends PluginCore{
         this.$group_items.find(".selected .title").text(title);
     }
 
+    createHttpStatusSelectWindow (opt) {
+        opt = opt || {};
+        let $div = $(this.tpl('modal', {
+            width: '300px',
+            height : '200px',
+            title : 'Choose Http Status',
+            body : this.tpl('http-status-modal', { status : HttpStatus.toList() })
+        }));
+
+        $div.on('click', '.close', function () {
+            $div.remove();
+        })
+
+        $div.on('click', '.apply', function () {
+            if (opt.apply) {
+                opt.apply($div.find(".select-http-status").val());
+            }
+
+            $div.remove();
+        })
+        
+        return $div; 
+    }
+    
+    setHttpStatus(text, $rule_item) {
+
+        if (text == 'more') {
+            app.modal(this.createHttpStatusSelectWindow({
+                apply : function (code) {
+                    $rule_item.find(".target-input").val(HttpStatus.message(code)).focus().trigger('input');
+                }
+            }));
+        } else {
+            $rule_item.find(".target-input").val(HttpStatus.message(text)).focus().trigger('input');
+        }
+
+    }
+
+    loadFilePath ($rule_item) {
+
+        app.showFile({}, function ( files ) {
+            $rule_item.find(".target-input").val(files.join(',')).trigger('input');
+        });
+    }
+
+    loadDirectoryPath ($rule_item) {
+
+        app.showDirectory({}, function ( files ) {
+            $rule_item.find(".target-input").val(files.join(',')).trigger('input');
+        });
+    }
+
     initEvent() {
 
         const that = this;
@@ -338,6 +389,20 @@ class RuleTable extends PluginCore{
 
             that.saveRules();
         });
+
+        this.$rule_items.on('change', '.http-status-select', function () {
+            var text = $(this).val();
+
+            that.setHttpStatus(text, $(this).closest('.rule-item'));
+        });
+
+        this.$rule_items.on('click', '.file-select', function () {
+            that.loadFilePath($(this).closest('.rule-item'));
+        })
+
+        this.$rule_items.on('click', '.directory-select', function () {
+            that.loadDirectoryPath($(this).closest('.rule-item'));
+        })
     }
 }
 

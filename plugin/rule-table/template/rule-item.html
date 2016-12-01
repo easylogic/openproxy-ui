@@ -3,10 +3,10 @@
     <div class="head">
         <strong> <i class="icon-checkbox{{^checked}}2{{/checked}} check-status"></i> <span class='preview-text'>[<span class="preview-type">{{type}}</span>] <span class="preview-source">{{source}}</span> -> <span class="preview-target">{{target}}</span> </span></strong>
         <div style="float: right;">
-            <i class="icon-trashcan delete-rule"></i>
-            <span class="divider">|</span>
             <i class="icon-arrow3 up-rule" title="up"></i>
             <i class="icon-arrow1 down-rule" title="down"></i>
+            <span class="divider">|</span>
+            <i class="icon-trashcan delete-rule"></i>
         </div>
     </div>
     <div class="body">
@@ -23,10 +23,20 @@
             <label>Target</label>
             <input type="text" class="input target-input" value="{{target}}" placeholder="www.next.com" />
         </div>
-        <div class="input-item">
+        <div class="target-util input-item">
             <label></label>
             <div class="group">
-                <a class="btn"> <i class="icon-message"></i> STATUS <i class="icon-arrow2"></i></a><a class="btn"><i class="icon-report"></i> File</a><a class="btn"><i class="icon-add-dir"></i> Directory</a>
+                <label class="http-status"><i class="icon-message"></i> HTTP</label>
+                <select class="input http-status-select">
+                    <option value="">NONE</option>
+                    <option value="200">200 Ok</option>
+                    <option value="304">304 Not Modified</option>
+                    <option value="400">400 Bad Request</option>
+                    <option value="403">403 Forbidden</option>
+                    <option value="404">404 Not Found</option>
+                    <option value="500">500 Internal Server Error</option>
+                    <option value="more">More ...</option>
+                </select><a class="btn file-select"><i class="icon-report"></i> File</a><a class="btn directory-select"><i class="icon-add-dir"></i> Directory</a>
             </div>
         </div>
         <div class="summary input-item">

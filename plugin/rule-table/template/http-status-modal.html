@@ -1,0 +1,12 @@
+
+<div class="input-item" style="margin-bottom:10px;">
+    <label>Http Status</label>
+</div>
+
+<div class="input-item">
+    <select class="input select-http-status">
+        {{#status}}
+        <option value="{{code}}">{{code}} {{message}}</option>
+        {{/status}}
+    </select>
+</div>

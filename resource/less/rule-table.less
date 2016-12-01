@@ -86,6 +86,7 @@
     top:0px;
     bottom:0px;
     box-sizing:border-box;
+    min-width:600px;
 
     .rule-toolbar {
       position:absolute;
@@ -147,8 +148,26 @@
           background-image:none;
           cursor: pointer;
 
+          .preview-text {
+            overflow:hidden;
+            max-width:400px;
+            min-width:100px;
+            height:30px;
+            vertical-align: middle;
+            display: inline-block;
+          }
+
           .preview-type {
             text-transform: uppercase;
+          }
+
+          .preview-source, .preview-target {
+            display:inline-block;
+            max-width:200px;
+            height:30px;
+            vertical-align: middle;
+            text-overflow:ellipsis;
+            overflow:hidden;
           }
 
           .divider {
@@ -204,6 +223,11 @@
             input[type=radio] {
               display: inline-block;
               vertical-align: middle;
+            }
+
+            label.http-status {
+              display:inline-block;
+              width:50px;
             }
 
             .group>*+:not(ul) {

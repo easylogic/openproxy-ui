@@ -2,6 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const PluginCore = require('./lib/PluginCore');
 
+const remote = require('electron').remote;
+
 module.exports = class App extends PluginCore {
     constructor(options) {
         super(Object.assign({
@@ -86,6 +88,7 @@ module.exports = class App extends PluginCore {
         this.set('on', isOn);
 
         // 프록시 설정을 어떻게 해야하나
+        remote.app.emit('proxyOn', isOn);
     }
 
     initEvent () {
@@ -100,5 +103,55 @@ module.exports = class App extends PluginCore {
         this.plugin_tables.push(options);
     }
 
+    /**
+     * common ui
+     */
+    alert (message, callback) {
+        if (typeof callback == 'function') {
+            callback(alert(message));
+        } else {
+            return alert(message);
+        }
+    }
+
+    confirm(message, callback) {
+        if (typeof callback == 'function') {
+            callback(confirm(message));
+        } else {
+            return confirm(message);
+        }
+    }
+    
+    modal ($div, options) {
+        this.$el.append($div);
+        var position = this.$el.position();
+        var width = this.$el.width();
+        var height = this.$el.height();
+
+        var left = width/2 - $div.width()/2;
+        var top = height/2 - $div.height()/2;
+
+        $div.css({
+            position: 'absolute',
+            left : left + 'px',
+            top : top + 'px'
+        }).show();
+    }
+
+    showDirectory (options, callback) {
+        this.showOpenDialog(Object.assign({
+            properties: ['openDirectory']
+        }, options || {}), callback);
+    }
+
+    showFile (options, callback) {
+        this.showOpenDialog(Object.assign({
+            properties: ['openFile']
+        }, options || {}), callback);
+    }
+
+    showOpenDialog (options, callback) {
+        remote.dialog.showOpenDialog(options || {}, callback);
+    }
 }
 
