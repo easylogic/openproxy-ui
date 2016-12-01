@@ -13,7 +13,7 @@ module.exports = class App extends PluginCore {
         this.plugin_root = __dirname + "/plugin";
         this.plugin_instances = {};
         this.plugin_tables = [];
-        this.swtich = null;
+        this.switch = null;
 
         this.initElement();
         this.loadPlugins();
@@ -35,7 +35,7 @@ module.exports = class App extends PluginCore {
         this.$app_content = this.find(".app-content");
 
         this.switch = jui.create("ui.switch", this.find(".proxy-switch"));
-
+        
         this.initEvent ()
     }
 

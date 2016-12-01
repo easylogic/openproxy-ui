@@ -10,8 +10,45 @@ const BrowserWindow = electron.BrowserWindow
 const appRoot = path.join(__dirname, '.')
 
 require('electron-compile').init(appRoot, './');
-require('electron-reload')(__dirname)
+require('electron-reload')(__dirname);
 
+const OpenProxy = require('openproxy');
+
+app.openproxy = new OpenProxy();
+
+app.openproxy.addPlugin({
+  load : function () {
+    console.log('start proxy', app.openproxy.opt.port );
+  },
+
+  close : function () {
+    console.log('stop proxy'); 
+  },
+  
+  beforeRequest : function (session) {
+    //console.log(session.parse);
+  }
+})
+
+function setProxyOn () {
+  if (process.platform == 'darwin') {
+
+  } else if (process.platform == 'window') {
+
+  } else if (process.platform == 'linux') {
+
+  }
+}
+
+function setProxyOff () {
+  if (process.platform == 'darwin') {
+
+  } else if (process.platform == 'window') {
+
+  } else if (process.platform == 'linux') {
+
+  }
+}
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -59,9 +96,21 @@ app.on('activate', function () {
   }
 })
 
+app.on('settings', function (settings) {
+  app.openproxy.set(settings);
+})
+
 // when proxy is on
 app.on('proxyOn', function (isOn) {
-  console.log(isOn);
+  if (isOn) {
+    app.openproxy.init()
+
+    setProxyOn();
+  } else {
+    app.openproxy.close();
+    setProxyOff();
+  }
+
 })
 
 // In this file you can include the rest of your app's specific main process
