@@ -1,0 +1,18 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+# SharpDevelop 5.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowProxyManager", "WindowProxyManager\WindowProxyManager.csproj", "{160655B0-344F-46DD-9390-E6432FFF7BE0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{160655B0-344F-46DD-9390-E6432FFF7BE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{160655B0-344F-46DD-9390-E6432FFF7BE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{160655B0-344F-46DD-9390-E6432FFF7BE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{160655B0-344F-46DD-9390-E6432FFF7BE0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

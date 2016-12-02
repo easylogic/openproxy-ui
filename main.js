@@ -12,6 +12,9 @@ const appRoot = path.join(__dirname, '.')
 require('electron-compile').init(appRoot, './');
 require('electron-reload')(__dirname);
 
+const execSync = require('child_process').execSync;
+
+/*
 const OpenProxy = require('openproxy');
 
 app.openproxy = new OpenProxy();
@@ -29,12 +32,17 @@ app.openproxy.addPlugin({
     //console.log(session.parse);
   }
 })
+*/
+
+let proxy_command = function (command) {
+  execSync(__dirname + "/system/window/WindowProxyManager.exe "+ command);
+};
 
 function setProxyOn () {
   if (process.platform == 'darwin') {
 
   } else if (process.platform == 'window') {
-
+    proxy_command("start 127.0.0.1:8888");
   } else if (process.platform == 'linux') {
 
   }
@@ -44,7 +52,7 @@ function setProxyOff () {
   if (process.platform == 'darwin') {
 
   } else if (process.platform == 'window') {
-
+    proxy_command("stop");
   } else if (process.platform == 'linux') {
 
   }
@@ -56,7 +64,7 @@ let mainWindow
 
 function createWindow () {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 1024, height: 600})
+  mainWindow = new BrowserWindow({width: 1200, height: 600})
 
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({
@@ -103,11 +111,11 @@ app.on('settings', function (settings) {
 // when proxy is on
 app.on('proxyOn', function (isOn) {
   if (isOn) {
-    app.openproxy.init()
+    //app.openproxy.init()
 
     setProxyOn();
   } else {
-    app.openproxy.close();
+    //app.openproxy.close();
     setProxyOff();
   }
 

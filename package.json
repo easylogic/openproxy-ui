@@ -19,11 +19,13 @@
   "devDependencies": {
     "babel-preset-es2016-node5": "^1.1.2",
     "electron": "^1.4.1",
-    "electron-compilers": "^4.0.5"
+    "electron-compilers": "^4.0.5",
+    "electron-prebuilt": "^1.4.10"
   },
   "dependencies": {
     "electron-compile": "^4.0.2",
     "electron-config": "^0.2.1",
+    "electron-edge": "^6.5.3",
     "electron-reload": "^1.0.3",
     "jquery": "^3.1.1",
     "jui": "^2.0.3",
