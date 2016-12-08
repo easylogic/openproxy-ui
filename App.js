@@ -59,6 +59,10 @@ module.exports = class App extends PluginCore {
             that.addPlugin(PluginObject, PluginClass);
         });
 
+        this.plugin_tables.sort(function (a, b) {
+            return a.order > b.order;
+        })
+
         this.reloadMenuItems();
     }
 

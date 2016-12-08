@@ -12,7 +12,7 @@ const appRoot = path.join(__dirname, '.')
 require('electron-compile').init(appRoot, './');
 require('electron-reload')(__dirname);
 
-const execSync = require('child_process').execSync;
+const ProxyManager = require('./lib/ProxyManager');
 
 /*
 const OpenProxy = require('openproxy');
@@ -33,30 +33,6 @@ app.openproxy.addPlugin({
   }
 })
 */
-
-let proxy_command = function (command) {
-  execSync(__dirname + "/system/window/WindowProxyManager.exe "+ command);
-};
-
-function setProxyOn () {
-  if (process.platform == 'darwin') {
-
-  } else if (process.platform == 'window') {
-    proxy_command("start 127.0.0.1:8888");
-  } else if (process.platform == 'linux') {
-
-  }
-}
-
-function setProxyOff () {
-  if (process.platform == 'darwin') {
-
-  } else if (process.platform == 'window') {
-    proxy_command("stop");
-  } else if (process.platform == 'linux') {
-
-  }
-}
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -112,11 +88,11 @@ app.on('settings', function (settings) {
 app.on('proxyOn', function (isOn) {
   if (isOn) {
     //app.openproxy.init()
-
+    ProxyManager.on('127.0.0.1:8888');
     setProxyOn();
   } else {
     //app.openproxy.close();
-    setProxyOff();
+    ProxyManager.off();
   }
 
 })

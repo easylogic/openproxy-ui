@@ -1,0 +1,11 @@
+{
+  "name" : "settings",
+  "version": "1.0",
+  "icon" : "icon-gear",
+  "main" : "index.js",
+  "title" : "Settings",
+  "order" : 0,
+  "description": "Settings for openproxy",
+  "license": "MIT",
+  "author" : "easylogic"
+}
