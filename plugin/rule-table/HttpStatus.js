@@ -63,8 +63,6 @@ module.exports = {
             list.push({ code : code, message : message })
         }
 
-        console.log(list);
-
         return list;
     }
 }

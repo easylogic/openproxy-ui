@@ -86,7 +86,7 @@ class Settings extends PluginCore{
 
     initEvent() {
         let that = this;
-        this.find(".settings-save").on('click', function () {
+        this.$el.on('click', ".settings-save", function () {
             that.saveSettings();
         });
 

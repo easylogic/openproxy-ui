@@ -293,14 +293,14 @@ class RuleTable extends PluginCore{
     loadFilePath ($rule_item) {
 
         app.showFile({}, function ( files ) {
-            $rule_item.find(".target-input").val(files.join(',')).trigger('input');
+            $rule_item.find(".target-input").val("file://" + files.join(',')).trigger('input');
         });
     }
 
     loadDirectoryPath ($rule_item) {
 
         app.showDirectory({}, function ( files ) {
-            $rule_item.find(".target-input").val(files.join(',')).trigger('input');
+            $rule_item.find(".target-input").val("dir://" + files.join(',')).trigger('input');
         });
     }
 
@@ -308,18 +308,18 @@ class RuleTable extends PluginCore{
 
         const that = this;
         
-        this.find(".add-group").on('click', function () {
+        this.$el.on('click', ".add-group" , function () {
             that.addGroup();
             that.saveRules();
         });
-        this.find(".delete-group").on('click', function () {
+        this.$el.on('click', ".delete-group", function () {
             that.deleteGroup();
             that.saveRules();
         });
-        this.find(".reload-group").on('click', function () {
+        this.$el.on('click', ".reload-group", function () {
             that.reload();
         });
-        this.find(".save-rules").on('click', function () {
+        this.$el.on('click', ".save-rules", function () {
             that.saveRules();
         });
 
@@ -329,19 +329,19 @@ class RuleTable extends PluginCore{
             that.selectGroup($(this));
         });
         
-        this.find(".add-rule").on('click', function () {
+        this.$el.on('click', ".add-rule", function () {
            that.addRule();
 
            that.saveRules();
         });
 
-        this.find(".group-name").on('input', function () {
+        this.$el.on('input', ".group-name", function () {
             that.saveGroupName();
 
             that.saveRules();
-        })
+        });
 
-        this.find(".save-group-name").on('click', function () {
+        this.$el.on('click', ".save-group-name", function () {
             that.saveGroupName();
 
             that.saveRules();

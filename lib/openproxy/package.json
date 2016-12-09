@@ -1,0 +1,77 @@
+{
+  "_args": [
+    [
+      "openproxy",
+      "C:\\Users\\Jayden\\IdeaProjects\\openproxy-ui"
+    ]
+  ],
+  "_from": "openproxy@latest",
+  "_id": "openproxy@0.0.2",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/openproxy",
+  "_npmUser": {
+    "email": "cyberuls@gmail.com",
+    "name": "easylogic"
+  },
+  "_npmVersion": "1.2.10",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "openproxy",
+    "raw": "openproxy",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/openproxy/-/openproxy-0.0.2.tgz",
+  "_shasum": "920d3b03913de81e3175dae9c44c2adfb101749a",
+  "_shrinkwrap": null,
+  "_spec": "openproxy",
+  "_where": "C:\\Users\\Jayden\\IdeaProjects\\openproxy-ui",
+  "author": {
+    "name": "easylogic"
+  },
+  "bugs": {
+    "url": "https://github.com/easylogic/openproxy/issues"
+  },
+  "dependencies": {
+    "mime": ">=1.2.9",
+    "node-static": ">=0.6.7"
+  },
+  "description": "Open Proxy for Developers",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "920d3b03913de81e3175dae9c44c2adfb101749a",
+    "tarball": "https://registry.npmjs.org/openproxy/-/openproxy-0.0.2.tgz"
+  },
+  "homepage": "https://github.com/easylogic/openproxy#readme",
+  "keywords": [
+    "openproxy",
+    "reverse"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "email": "cyberuls@gmail.com",
+      "name": "easylogic"
+    }
+  ],
+  "name": "openproxy",
+  "optionalDependencies": {},
+  "readme": "openproxy\r\n=========\r\n\r\nOpen Proxy for Developers\r\n\r\n# Install \r\n\t\r\n\tnpm install openproxy \r\n\t\r\n# How to use \r\n\r\n\tvar Proxy = require('openproxy');\r\n\t\r\n\tnew Proxy().init();\r\n\t\r\n# Events \r\n\r\n* beforeRequest\r\n* afterRequest\r\n* beforeResponse\r\n* afterResponse\r\n* error  \t\r\n\r\n# Plugin System \r\n\r\n\tvar Proxy = require('openproxy');\r\n\t\r\n\tproxy = new Proxy();\r\n\t\r\n\t// reverse proxy sample \r\n\tproxy.addPlugin({\r\n\t\r\n\t\t// run beforeRequest event\r\n\t\tbeforeRequest : function(session) {\r\n\t\t\r\n\t\t\t// if hostname is 'www.google.com', change to 'www.facebook.com'\r\n\t\t\tif (session.hostnameIs('www.google.com')) {\r\n\t\t\t\tsession.change({ source : \"www.google.com\", target : 'www.facebook.com' })\r\n\t\t\t}\r\n\t\t}\r\n\t})\r\n\t\r\n\tproxy.init();\r\n\t\r\n# License\r\n\r\nThe MIT License (MIT)\r\n\r\nCopyright (c) 2012 easylogic.co.kr (cyberuls@gmail.com)\r\n\r\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\r\n\r\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\r\n\r\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\r\n\t\r\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/easylogic/openproxy.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.0.2"
+}

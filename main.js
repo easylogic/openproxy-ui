@@ -14,25 +14,24 @@ require('electron-reload')(__dirname);
 
 const ProxyManager = require('./lib/ProxyManager');
 
-/*
-const OpenProxy = require('openproxy');
 
+const OpenProxy = require('./lib/openproxy');
 app.openproxy = new OpenProxy();
 
 app.openproxy.addPlugin({
   load : function () {
-    console.log('start proxy', app.openproxy.opt.port );
+    console.log('start proxy', app.openproxy.host() );
   },
 
   close : function () {
-    console.log('stop proxy'); 
+    console.log('stop proxy', app.openproxy.host());
   },
   
   beforeRequest : function (session) {
-    //console.log(session.parse);
+    console.log(session.parse);
   }
-})
-*/
+});
+
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -55,6 +54,9 @@ function createWindow () {
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
     mainWindow = null
+
+    app.emit('proxyOn', false); // 윈도우를 닫을 때 프록시 설정 다시 돌리기 
+
   })
 }
 
@@ -85,13 +87,13 @@ app.on('settings', function (settings) {
 })
 
 // when proxy is on
-app.on('proxyOn', function (isOn) {
+app.on('proxyOn', function (isOn, settings) {
   if (isOn) {
     //app.openproxy.init()
-    ProxyManager.on('127.0.0.1:8888');
-    setProxyOn();
+    app.openproxy.init(settings || { port : 8888});
+    ProxyManager.on(app.openproxy.host());
   } else {
-    //app.openproxy.close();
+    app.openproxy.close();
     ProxyManager.off();
   }
 

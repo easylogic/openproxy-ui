@@ -88,23 +88,33 @@ module.exports = class App extends PluginCore {
         this.$app_content.find(".plugin-" + name).html(this.plugin_instances[name].$el);
     }
 
+    plugin (name) {
+        return this.plugin_instances[name];
+    }
+
     switchOn (isOn) {
         this.set('on', isOn);
 
         // 프록시 설정을 어떻게 해야하나
-        remote.app.emit('proxyOn', isOn);
+        remote.app.emit('proxyOn', isOn, this.plugin('settings').get('settings'));
     }
 
     initEvent () {
         let that = this;
         this.switch.on('change', function () {
             that.switchOn(this.getValue());
+        });
+
+        this.$menu_items.on('click', '[data-name]', function () {
+            that.showPlugin($(this).data('name'));
         })
     }
 
     addPlugin(options, PluginClass) {
         this.plugin_instances[options.name] = new PluginClass(options);
         this.plugin_tables.push(options);
+
+        //remote.app.emit('addPlugin', this.plugin_instances[options.name]);
     }
 
     /**
