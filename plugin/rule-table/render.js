@@ -1,9 +1,9 @@
 const path = require('path');
 const fs = require('fs');
-const PluginCore = require('../../lib/PluginCore');
+const RenderPlugin = require('../../lib/RenderPlugin');
 const HttpStatus = require('./HttpStatus');
 
-class RuleTable extends PluginCore{
+class RuleTable extends RenderPlugin{
     constructor (options) {
         super(options);
 

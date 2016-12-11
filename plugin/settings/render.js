@@ -1,8 +1,8 @@
 const path = require('path');
 const fs = require('fs');
-const PluginCore = require('../../lib/PluginCore');
+const RenderPlugin = require('../../lib/RenderPlugin');
 
-class Settings extends PluginCore{
+class Settings extends RenderPlugin{
     constructor (options) {
         super(options);
 
@@ -15,7 +15,6 @@ class Settings extends PluginCore{
         this.settings = this.get('settings') || {};
 
         this.reload();
-        console.log('reload');
     }
 
     getTemplateRoot () {

@@ -1,10 +1,10 @@
 const fs = require('fs');
 const path = require('path');
-const PluginCore = require('./lib/PluginCore');
+const RenderPlugin = require('./lib/RenderPlugin');
 
 const remote = require('electron').remote;
 
-module.exports = class App extends PluginCore {
+module.exports = class App extends RenderPlugin {
     constructor(options) {
         super(Object.assign({
             name : 'app'
@@ -49,9 +49,9 @@ module.exports = class App extends PluginCore {
         let plugin_root = this.plugin_root;
 
         plugins.forEach(function(plugin) {
-            let PluginObject = JSON.parse(fs.readFileSync(plugin_root + "/" + plugin + "/package.json") + "");
+            let PluginObject = JSON.parse(fs.readFileSync(path.join(plugin_root, plugin, "package.json")) + "");
 
-            let PluginClass = require(plugin_root + "/" + plugin);
+            let PluginClass = require(path.join(plugin_root , plugin , "render"));
 
             // use directory name as plugin id
             PluginObject.id = plugin;
@@ -95,8 +95,7 @@ module.exports = class App extends PluginCore {
     switchOn (isOn) {
         this.set('on', isOn);
 
-        // 프록시 설정을 어떻게 해야하나
-        remote.app.emit('proxyOn', isOn, this.plugin('settings').get('settings'));
+        remote.app.emit('proxyOn', isOn, this.settings);
     }
 
     initEvent () {
@@ -114,7 +113,7 @@ module.exports = class App extends PluginCore {
         this.plugin_instances[options.name] = new PluginClass(options);
         this.plugin_tables.push(options);
 
-        //remote.app.emit('addPlugin', this.plugin_instances[options.name]);
+        remote.app.addPlugin(this.plugin_instances[options.name]);
     }
 
     /**

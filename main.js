@@ -13,24 +13,11 @@ require('electron-compile').init(appRoot, './');
 require('electron-reload')(__dirname);
 
 const ProxyManager = require('./lib/ProxyManager');
-
+app.proxymanager = ProxyManager;
 
 const OpenProxy = require('./lib/openproxy');
+
 app.openproxy = new OpenProxy();
-
-app.openproxy.addPlugin({
-  load : function () {
-    console.log('start proxy', app.openproxy.host() );
-  },
-
-  close : function () {
-    console.log('stop proxy', app.openproxy.host());
-  },
-  
-  beforeRequest : function (session) {
-    console.log(session.parse);
-  }
-});
 
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -90,13 +77,24 @@ app.on('settings', function (settings) {
 app.on('proxyOn', function (isOn, settings) {
   if (isOn) {
     //app.openproxy.init()
-    app.openproxy.init(settings || { port : 8888});
+    app.openproxy.trigger('reload');  
+    app.openproxy.init();
     ProxyManager.on(app.openproxy.host());
   } else {
     app.openproxy.close();
     ProxyManager.off();
   }
 
+})
+
+app.on('load.plugin', function (plugin) {
+    try {
+        const PluginClass = require(path.join('plugin', plugin, 'main'));
+        
+        app.openproxy.addPlugin(new PluginClass(app));
+    } catch (e) {
+        
+    }
 })
 
 // In this file you can include the rest of your app's specific main process
