@@ -2,24 +2,28 @@ const MainPlugin = require('../../lib/MainPlugin');
 
 class Settings extends MainPlugin {
     constructor (app) {
+
+        console.log(app);
         super({
             name : 'settings'
         })
 
-        this.app = app;
+        this.mainApp = app;
+
+        //console.log(this.mainApp);
     }
 
     load () {
         super.load();
-
-        this.app.openproxy.set(this.get('settings'));
+        //console.log(this);
+        this.mainApp.openproxy.set(this.get('settings'));
 
     }
 
     unload () {
         super.unload();
 
-        this.app.openproxy.removeOption();
+        this.mainApp.openproxy.removeOption();
     }
 
 

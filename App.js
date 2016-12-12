@@ -113,7 +113,7 @@ module.exports = class App extends RenderPlugin {
         this.plugin_instances[options.name] = new PluginClass(options);
         this.plugin_tables.push(options);
 
-        remote.app.addPlugin(this.plugin_instances[options.name]);
+        remote.app.emit("load.plugin", options.name);
     }
 
     /**

@@ -89,11 +89,16 @@ app.on('proxyOn', function (isOn, settings) {
 
 app.on('load.plugin', function (plugin) {
     try {
-        const PluginClass = require(path.join('plugin', plugin, 'main'));
-        
-        app.openproxy.addPlugin(new PluginClass(app));
+        let PluginClass = require(['./plugin', plugin, 'main'].join("/"));
+
+      //console.log(app);
+
+        let pluginObject = new PluginClass(app);
+        app.openproxy.addPlugin(pluginObject);
+
+        console.log(pluginObject.mainApp);
     } catch (e) {
-        
+        console.log(e);
     }
 })
 
