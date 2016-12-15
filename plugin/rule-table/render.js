@@ -5,7 +5,9 @@ const HttpStatus = require('./HttpStatus');
 
 class RuleTable extends RenderPlugin{
     constructor (options) {
-        super(options);
+        super(Object.assign({
+            name : 'rule-table'
+        }, options));
 
         this.$el = $("<div class='rule-table' />");
         this.initElement();
@@ -83,7 +85,7 @@ class RuleTable extends RenderPlugin{
     addGroup () {
         let groups = [];
         
-        groups.push({ selected : false, name : "New Group" });
+        groups.push({ selected : false, name : this.i18n("New Group") });
 
         let $group = $(this.tpl('group-item', { groups : groups }));
 
@@ -94,14 +96,14 @@ class RuleTable extends RenderPlugin{
 
     deleteGroup () {
 
-        let index = this.$group_items.find(".selected").index();
-
-        if (index == -1) {
-            alert('Choose a group.');
+        if (this.hasSelectedGroup() === false) {
+            alert(this.i18n('Choose a group'));
             return;
         }
 
-        if (!confirm("Delete a group really?")) {
+        let index = this.$group_items.find(".selected").index();
+
+        if (!confirm(this.i18n("Delete a group really?"))) {
             return;
         }
 
@@ -128,13 +130,17 @@ class RuleTable extends RenderPlugin{
 
         return obj;
     }
+
+    hasSelectedGroup () {
+        let count = this.$group_items.find("> .selected").length;
+
+        return count > 0;
+    }
     
     addRule () {
 
-        let count = this.$group_items.find("> .selected").length;
-
-        if (count == 0) {
-            alert("Choose a group");
+        if (this.hasSelectedGroup() === false) {
+            alert(this.i18n('Choose a group'));
             return;
         }
 
@@ -157,7 +163,7 @@ class RuleTable extends RenderPlugin{
 
         var obj = this.generateRuleItem($rule_item);
 
-        $rule_item.find(".check-status").attr('title', obj.checked  ? 'Apply rule' : 'Don\'t apply rule');
+        $rule_item.find(".check-status").attr('title', obj.checked  ? this.i18n('Apply rule') : this.i18n('Don\'t apply rule'));
         $rule_item.find(".preview-type").text(obj.type);
         $rule_item.find(".preview-source").text(obj.source);
         $rule_item.find(".preview-target").text(obj.target);
@@ -257,7 +263,7 @@ class RuleTable extends RenderPlugin{
         let $div = $(this.tpl('modal', {
             width: '300px',
             height : '200px',
-            title : 'Choose Http Status',
+            title : this.i18n('Choose Http Status'),
             body : this.tpl('http-status-modal', { status : HttpStatus.toList() })
         }));
 
@@ -307,6 +313,8 @@ class RuleTable extends RenderPlugin{
     initEvent() {
 
         const that = this;
+
+        console.log(that.$el);
         
         this.$el.on('click', ".add-group" , function () {
             that.addGroup();
@@ -324,8 +332,8 @@ class RuleTable extends RenderPlugin{
         });
 
 
-        this.$group_items.on('click', ".group-item", function () {
-
+        this.$el.on('click', ".group-item", function () {
+            console.log(this);
             that.selectGroup($(this));
         });
         

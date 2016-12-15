@@ -4,7 +4,10 @@ const RenderPlugin = require('../../lib/RenderPlugin');
 
 class Settings extends RenderPlugin{
     constructor (options) {
-        super(options);
+        super(Object.assign({
+            name : 'settings'
+        }, options));
+
 
         this.$el = $("<div class='settings property' />");
         this.initElement();
@@ -31,9 +34,9 @@ class Settings extends RenderPlugin{
 
         this.settingsProperty = jui.create('ui.property', this.find('.settings-property'), {
            items : [
-               { type : 'group', title : 'Default Settings' },
-               { title : 'Proxy Port', key : 'port', value : '8888' },
-               { title : 'Log Save Directory', key : 'logSaveDirectory', value : '', render : function ($dom, item) {
+               { type : 'group', title : this.i18n('Default Settings') },
+               { title : this.i18n('Proxy Port'), key : 'port', value : '8888' },
+               { title : this.i18n('Log Save Directory'), key : 'logSaveDirectory', value : '', render : function ($dom, item) {
 
                    var $group = $("<div class='' />");
 
@@ -73,14 +76,11 @@ class Settings extends RenderPlugin{
     }
 
     reloadSettings() {
-        console.log(this.settings);
         this.settingsProperty.setValue(this.settings);
     }
 
     saveSettings () {
         this.set('settings', this.settingsProperty.getValue());
-
-        console.log(this.get('settings'));
     }
 
     initEvent() {

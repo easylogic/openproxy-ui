@@ -83,7 +83,8 @@ module.exports = class App extends RenderPlugin {
 
         this.selectMenu(name);
 
-        this.$app_content.html(this.tpl('content', this.plugin_instances[name].options));
+        // dom 의 이벤트를 유지를 해야하기 때문에  innerHTML 형태로 구성한다.  메모리에 있는 dom 과 이벤트를 모두 남겨야한다.
+        this.$app_content[0].innerHTML = this.tpl('content', this.plugin_instances[name].options);
 
         this.$app_content.find(".plugin-" + name).html(this.plugin_instances[name].$el);
     }

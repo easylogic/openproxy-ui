@@ -1,12 +1,12 @@
+const electron = require('electron');
+const app = electron.app;
 const MainPlugin = require('../../lib/MainPlugin');
 
 class RuleTable extends MainPlugin {
     constructor (app) {
         super({
-            name : 'settings'
+            name : 'rule-table'
         })
-
-        this.app = app;
     }
 
     initRules () {
@@ -52,6 +52,8 @@ class RuleTable extends MainPlugin {
     }
 
     beforeRequest (session) {
+
+        console.log(session.url());
 
         for(var i = 0 , len = this.rules.length; i < len; i++) {
             let rule = this.rules[i];

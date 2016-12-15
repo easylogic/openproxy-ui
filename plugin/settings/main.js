@@ -1,29 +1,30 @@
+const electron = require('electron');
+const app = electron.app;
 const MainPlugin = require('../../lib/MainPlugin');
 
 class Settings extends MainPlugin {
-    constructor (app) {
-
-        console.log(app);
+    constructor () {
         super({
             name : 'settings'
         })
-
-        this.mainApp = app;
-
-        //console.log(this.mainApp);
     }
 
     load () {
         super.load();
-        //console.log(this);
-        this.mainApp.openproxy.set(this.get('settings'));
+
+        if (app) {
+            app.openproxy.setOption(this.get('settings') || {});
+        }
 
     }
 
     unload () {
         super.unload();
 
-        this.mainApp.openproxy.removeOption();
+        if (app) {
+            app.openproxy.removeOption();
+        }
+
     }
 
 

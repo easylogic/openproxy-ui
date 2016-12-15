@@ -1,0 +1,19 @@
+{
+    "Add Group": "그룹 추가",
+    "Group": "그룹",
+    "Add Rule": "Rule 추가",
+    "Add a rule for reverse proxy" : "Reverse Proxy 에 사용될 Rule 을 추가해주세요.",
+    "Summary": "간단한 설명",
+    "New Group": "새 그룹",
+    "Choose a group": "그룹을 선택해주세요",
+    "Apply rule": "룰 적용",
+    "Don't apply rule": "룰 적용안함",
+    "up" : "위로",
+    "down" : "아래로",
+    "Type" : "형식",
+    "Choose Http Status": "HTTP STATUS 선택",
+    "File": "파일",
+    "Directory": "디렉토리",
+    "Type a summary": "설명을 입력해주세요",
+    "Delete a group really?": "그룹을 삭제하시겠습니까?"
+}

@@ -6,7 +6,6 @@ const url = require('url')
 const app = electron.app
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow
-
 const appRoot = path.join(__dirname, '.')
 
 require('electron-compile').init(appRoot, './');
@@ -16,8 +15,11 @@ const ProxyManager = require('./lib/ProxyManager');
 app.proxymanager = ProxyManager;
 
 const OpenProxy = require('./lib/openproxy');
-
 app.openproxy = new OpenProxy();
+
+const i18n = new(require('./translations/i18n'));
+
+
 
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -76,8 +78,7 @@ app.on('settings', function (settings) {
 // when proxy is on
 app.on('proxyOn', function (isOn, settings) {
   if (isOn) {
-    //app.openproxy.init()
-    app.openproxy.trigger('reload');  
+    app.openproxy.trigger('reload');
     app.openproxy.init();
     ProxyManager.on(app.openproxy.host());
   } else {
@@ -91,12 +92,8 @@ app.on('load.plugin', function (plugin) {
     try {
         let PluginClass = require(['./plugin', plugin, 'main'].join("/"));
 
-      //console.log(app);
-
         let pluginObject = new PluginClass(app);
         app.openproxy.addPlugin(pluginObject);
-
-        console.log(pluginObject.mainApp);
     } catch (e) {
         console.log(e);
     }

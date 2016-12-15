@@ -3,15 +3,15 @@
     <div class="head">
         <strong> <i class="icon-checkbox{{^checked}}2{{/checked}} check-status"></i> <span class='preview-text'>[<span class="preview-type">{{type}}</span>] <span class="preview-source">{{source}}</span> -> <span class="preview-target">{{target}}</span> </span></strong>
         <div style="float: right;">
-            <i class="icon-arrow3 up-rule" title="up"></i>
-            <i class="icon-arrow1 down-rule" title="down"></i>
+            <i class="icon-arrow3 up-rule" title="{{#i18n}}up{{/i18n}}"></i>
+            <i class="icon-arrow1 down-rule" title="{{#i18n}}down{{/i18n}}"></i>
             <span class="divider">|</span>
             <i class="icon-trashcan delete-rule"></i>
         </div>
     </div>
     <div class="body">
         <div class="type input-item">
-            <label>Type</label>
+            <label>{{#i18n}}Type{{/i18n}}</label>
             <label class="input-radio"><input type="radio" value="host" name="type_{{typeGroupName}}" {{#isHost}}checked{{/isHost}} /> HOST </label>
             <label class="input-radio"><input type="radio" value="url" name="type_{{typeGroupName}}" {{#isUrl}}checked{{/isUrl}}/> URL </label>
             <label class="input-radio"><input type="radio" value="pattern" name="type_{{typeGroupName}}" {{#isPattern}}checked{{/isPattern}}/> PATTERN </label>
@@ -36,12 +36,12 @@
                     <option value="404">404 Not Found</option>
                     <option value="500">500 Internal Server Error</option>
                     <option value="more">More ...</option>
-                </select><a class="btn file-select"><i class="icon-report"></i> File</a><a class="btn directory-select"><i class="icon-add-dir"></i> Directory</a>
+                </select><a class="btn file-select"><i class="icon-report"></i> {{#i18n}}File{{/i18n}}</a><a class="btn directory-select"><i class="icon-add-dir"></i> {{#i18n}}Directory{{/i18n}}</a>
             </div>
         </div>
         <div class="summary input-item">
-            <label>Summary</label>
-            <input type="text" class="input summary-input" value="{{summary}}" placeholder="Type a summary" />
+            <label>{{#i18n}}Summary{{/i18n}}</label>
+            <input type="text" class="input summary-input" value="{{summary}}" placeholder="{{#i18n}}Type a summary{{/i18n}}" />
         </div>
     </div>
 </div>
@@ -49,7 +49,7 @@
 {{^rules}}
 <div class="rule-item panel empty">
     <div class="head">
-        <span class='preview-text'>add a rule for reverse proxy</span>
+        <span class='preview-text'>{{#i18n}}Add a rule for reverse proxy{{/i18n}}</span>
     </div>
 </div>
 {{/rules}}
