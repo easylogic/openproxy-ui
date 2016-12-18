@@ -12,14 +12,13 @@ require('electron-compile').init(appRoot, './');
 require('electron-reload')(__dirname);
 
 const ProxyManager = require('./lib/ProxyManager');
-app.proxymanager = ProxyManager;
-
 const OpenProxy = require('./lib/openproxy');
-app.openproxy = new OpenProxy();
-
 const i18n = new(require('./translations/i18n'));
+const MainApp = require('./MainApp');
 
-
+app.openproxy = new OpenProxy();
+app.proxymanager = ProxyManager;
+app.mainApp = new MainApp();
 
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -71,10 +70,6 @@ app.on('activate', function () {
   }
 })
 
-app.on('settings', function (settings) {
-  app.openproxy.set(settings);
-})
-
 // when proxy is on
 app.on('proxyOn', function (isOn, settings) {
   if (isOn) {
@@ -88,16 +83,6 @@ app.on('proxyOn', function (isOn, settings) {
 
 })
 
-app.on('load.plugin', function (plugin) {
-    try {
-        let PluginClass = require(['./plugin', plugin, 'main'].join("/"));
-
-        let pluginObject = new PluginClass(app);
-        app.openproxy.addPlugin(pluginObject);
-    } catch (e) {
-        console.log(e);
-    }
-})
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.

@@ -211,6 +211,7 @@ class RuleTable extends RenderPlugin{
             checked: $rule_item.find(".check-status").hasClass('icon-checkbox'),
             type: $rule_item.find("input[type=radio]:checked").val(),
             source: $rule_item.find(".source input[type=text]").val(),
+            keep: $rule_item.find(".keep-domain input[type=checkbox]").prop('checked'),
             target: $rule_item.find(".target input[type=text]").val(),
             summary: $rule_item.find(".summary input[type=text]").val()
         }
@@ -310,12 +311,14 @@ class RuleTable extends RenderPlugin{
         });
     }
 
+    toggleRuleItem ($rule_item) {
+        $rule_item.find(".autobody").toggle();
+    }
+
     initEvent() {
 
         const that = this;
 
-        console.log(that.$el);
-        
         this.$el.on('click', ".add-group" , function () {
             that.addGroup();
             that.saveRules();
@@ -333,7 +336,6 @@ class RuleTable extends RenderPlugin{
 
 
         this.$el.on('click', ".group-item", function () {
-            console.log(this);
             that.selectGroup($(this));
         });
         
@@ -386,6 +388,10 @@ class RuleTable extends RenderPlugin{
             that.saveRules();
         })
 
+        this.$rule_items.on('click', 'input[type=checkbox]', function (e) {
+            that.saveRules();
+        })
+
         this.$rule_items.on('click', '.up-rule', function () {
             that.upRule($(this).closest('.rule-item'));
 
@@ -410,6 +416,10 @@ class RuleTable extends RenderPlugin{
 
         this.$rule_items.on('click', '.directory-select', function () {
             that.loadDirectoryPath($(this).closest('.rule-item'));
+        })
+
+        this.$rule_items.on('click', '.preview-text' , function () {
+            that.toggleRuleItem($(this).closest('.rule-item'));
         })
     }
 }

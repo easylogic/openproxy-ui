@@ -48,6 +48,7 @@ class RuleTable extends MainPlugin {
     }
 
     applyRule (rule, session) {
+        console.log(rule);
         session.change(rule);
     }
 

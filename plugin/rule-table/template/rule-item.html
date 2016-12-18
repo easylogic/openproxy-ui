@@ -18,7 +18,12 @@
         </div>
         <div class="source input-item">
             <label>Source</label>
-            <input type="text" class="input" value="{{source}}" placeholder="www.example.com"/></div>
+            <input type="text" class="input" value="{{source}}" placeholder="www.example.com"/>
+        </div>
+        <div class="keep-domain input-item">
+            <label>{{#i18n}}Keep Domain{{/i18n}}</label>
+            <input type="checkbox" {{#keepDomain}}checked{{/keepDomain}}>
+        </div>
         <div class="target input-item">
             <label>Target</label>
             <input type="text" class="input target-input" value="{{target}}" placeholder="www.next.com" />

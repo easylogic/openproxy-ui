@@ -15,5 +15,6 @@
     "File": "파일",
     "Directory": "디렉토리",
     "Type a summary": "설명을 입력해주세요",
-    "Delete a group really?": "그룹을 삭제하시겠습니까?"
+    "Delete a group really?": "그룹을 삭제하시겠습니까?",
+    "Keep Domain": "도메인 유지"
 }
