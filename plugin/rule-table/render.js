@@ -49,7 +49,9 @@ class RuleTable extends RenderPlugin{
     reloadGroups () {
         this.$group_items.empty();
 
-        var groups = this.rule_table;
+        var groups = this.rule_table.filter(function(group) {
+            return !!group;
+        });
 
         this.$group_items.html(this.tpl('group-item', { groups : groups } ));
     }
@@ -106,6 +108,9 @@ class RuleTable extends RenderPlugin{
         if (!confirm(this.i18n("Delete a group really?"))) {
             return;
         }
+
+        // delete group object
+        this.deleteRules(index);
 
         let nextSelectedIndex = 0;
         this.$group_items.find(".selected").remove();
@@ -241,6 +246,16 @@ class RuleTable extends RenderPlugin{
         this.set('rule_table', this.rule_table);
     }
 
+    deleteConfig (index) {
+        this.rule_table[index] = undefined;
+
+        this.rule_table = this.rule_table.filter(function(group) {
+            return !!group;
+        });
+
+        this.set('rule_table', this.rule_table);
+    }
+
     saveRules () {
 
         if (this.saveTimer) {
@@ -251,6 +266,19 @@ class RuleTable extends RenderPlugin{
         this.saveTimer = setTimeout(function () {
             that.saveConfig();
         }, 300);
+
+    }
+
+    deleteRules (index) {
+
+        if (this.deleteTimer) {
+            clearTimeout(this.deleteTimer);
+        }
+
+        let that = this;
+        this.deleteTimer = setTimeout(function (index) {
+            that.deleteConfig(index);
+        }, 300, index);
 
     }
 
@@ -312,7 +340,7 @@ class RuleTable extends RenderPlugin{
     }
 
     toggleRuleItem ($rule_item) {
-        $rule_item.find(".autobody").toggle();
+        $rule_item.toggleClass('collapsed');
     }
 
     initEvent() {
@@ -325,7 +353,6 @@ class RuleTable extends RenderPlugin{
         });
         this.$el.on('click', ".delete-group", function () {
             that.deleteGroup();
-            that.saveRules();
         });
         this.$el.on('click', ".reload-group", function () {
             that.reload();

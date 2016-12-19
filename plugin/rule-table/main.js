@@ -13,8 +13,13 @@ class RuleTable extends MainPlugin {
         this.rules = [];
     }
 
-    addRule (item) {
-        this.rules.push(item);
+    addRule (rule) {
+
+        if (rule.type == 'pattern') {
+            rule.pattern = new RegExp(rule.source, "ig");
+        }
+
+        this.rules.push(rule);
     }
 
     load () {
@@ -24,6 +29,10 @@ class RuleTable extends MainPlugin {
 
         let that = this;
         let groups = this.get('rule_table') || [];
+
+        groups = groups.filter(function (group) {
+            return !!group;
+        });
 
         for(var i = 0, len = groups.length; i <len; i++ ) {
             let group = groups[i];
@@ -41,26 +50,28 @@ class RuleTable extends MainPlugin {
         } else if (rule.type == 'url') {
             return session.urlContains(rule.source);
         } else if (rule.type == 'pattern') {
-            return session.url().match(new RegExp(rule.source, "ig"));
+            return session.urlMatch(rule.pattern);
         }
 
         return false;
     }
 
-    applyRule (rule, session) {
-        console.log(rule);
-        session.change(rule);
+    applyRule (rule, match, session) {
+
+        session.change(rule, match);
     }
 
     beforeRequest (session) {
-
-        console.log(session.url());
-
         for(var i = 0 , len = this.rules.length; i < len; i++) {
             let rule = this.rules[i];
 
-            if (this.matchRule(rule, session)) {
-                this.applyRule(rule, session);
+            if (rule.checked === false) {
+                continue;
+            }
+
+            var match =  false;
+            if (match = this.matchRule(rule, session)) {
+                this.applyRule(rule, match,  session);
                 break;
             }
         }
