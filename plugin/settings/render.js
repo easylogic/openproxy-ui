@@ -85,10 +85,10 @@ class Settings extends RenderPlugin{
 
     initEvent() {
         let that = this;
-        this.$el.on('click', ".settings-save", function () {
-            that.saveSettings();
-        });
 
+        this.settingsProperty.on('change', function () {
+            that.saveSettings();
+        })
     }
 }
 
