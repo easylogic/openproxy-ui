@@ -27,10 +27,10 @@ module.exports = class App extends RenderPlugin {
         let that = this;
         this.menuTemplate = [
             { label : "Open Proxy", submenu : [
-                { label : 'Capture Start', click : function (menuItem, browserWindow, event) {
+                { type : 'checkbox', checked : false, label : 'Capture Traffic', click : function (menuItem, browserWindow, event) {
                    that.switch.toggle();
 
-                    that.menuTemplate[0].submenu[0].label = that.switch.getValue() ? 'Capture Stop' : 'Capture Start';
+                    that.menuTemplate[0].submenu[0].checked  = menuItem.checked;
                     that.resetMenu();
                 }},
                 { type : 'separator' },
@@ -39,9 +39,9 @@ module.exports = class App extends RenderPlugin {
                 } }
             ]},
             { label: "View", submenu : [
-                { label : "Small Mode", click : function () {  that.setMode('small-mode');  this.checked = !this.checked; } },
-                { label : "Full Screen Mode", click : function () {  that.setMode('fullscreen-mode'); this.checked = !this.checked;  } },
-                { label : "Default Mode", checked : true,  click : function () {  that.setMode('default-mode'); this.checked = !this.checked;  } },
+                { type: 'radio', label : "Small Mode", click : function () {  that.setMode('small-mode');  this.checked = !this.checked; } },
+                { type: 'radio', label : "Full Screen Mode", click : function () {  that.setMode('fullscreen-mode'); this.checked = !this.checked;  } },
+                { type: 'radio', label : "Default Mode", checked : true,  click : function () {  that.setMode('default-mode'); this.checked = !this.checked;  } },
                 { type : 'separator' },
                 {
                     label: 'Minimize',

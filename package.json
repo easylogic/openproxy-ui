@@ -6,12 +6,13 @@
   "scripts": {
     "start": "electron ."
   },
-  "repository": "https://github.com/electron/electron-quick-start",
+  "repository": "https://github.com/easylogic/openproxy-ui",
   "keywords": [
     "Electron",
     "OpenProxy",
+    "ReverseProxy",
     "FrontEnd",
-    "Debug",
+    "Debuggin",
     "Tool"
   ],
   "author": "easylogic",
@@ -32,7 +33,6 @@
     "jui-chart": "^2.0.4",
     "jui-core": "^2.0.4",
     "jui-grid": "^2.0.2",
-    "mustache": "^2.3.0",
-    "openproxy": "0.0.2"
+    "mustache": "^2.3.0"
   }
 }
