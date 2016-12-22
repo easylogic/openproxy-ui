@@ -13,6 +13,10 @@ npm install
 npm start 
   
 ```  
+
+# Documenations 
+
+https://easylogic.github.io/openproxy-ui/
  
 ## To Use
 
