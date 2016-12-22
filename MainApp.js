@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const app = require('electron').app;
+const { app, Menu } = require('electron');
 const MainPlugin = require('./lib/MainPlugin');
 
 module.exports = class App extends MainPlugin {
@@ -15,7 +15,6 @@ module.exports = class App extends MainPlugin {
 
         this.loadPlugins();
     }
-
 
     loadPlugins () {
         let plugins = fs.readdirSync(this.plugin_root);

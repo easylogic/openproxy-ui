@@ -135,6 +135,7 @@
 
 }
 
+
 .app-content {
   position:absolute;
   left:200px;
@@ -187,6 +188,63 @@
     }
   }
 
+}
+
+
+.app-container.small-mode {
+  .app-menu {
+    width:70px;
+
+
+    .app-title {
+      padding:10px 2px;
+      text-align:center;
+      .text {
+        display:block;
+        font-size:12px;
+      }
+    }
+
+    .app-menu-list {
+      padding:0px 2px;
+      .menu {
+
+        .menu-items {
+          margin-top:10px;
+          text-align:center;
+          .menu-item {
+            padding:10px 2px;
+            font-size:10px;
+            &.selected {
+              background-color:rgba(255, 255, 255, 0.1);
+              border-radius:0px;
+            }
+
+            i {
+              display:block;
+              font-size:24px;
+              margin:0px;
+            }
+
+          }
+        }
+      }
+    }
+  }
+
+  .app-content {
+    left:70px;
+  }
+}
+
+.app-container.fullscreen-mode {
+  .app-menu {
+    display:none;
+  }
+
+  .app-content {
+    left:0px;
+  }
 }
 
 @import "./settings.less";

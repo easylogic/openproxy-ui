@@ -3,3 +3,5 @@ npm-debug.log
 
 node_modules/
 .idea/
+system/window/WindowProxyManager/bin/
+system/window/WindowProxyManager/obj/

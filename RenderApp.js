@@ -3,6 +3,7 @@ const path = require('path');
 const RenderPlugin = require('./lib/RenderPlugin');
 
 const remote = require('electron').remote;
+const {Menu, MenuItem} = remote; 
 
 module.exports = class App extends RenderPlugin {
     constructor(options) {
@@ -13,11 +14,54 @@ module.exports = class App extends RenderPlugin {
         this.plugin_root = __dirname + "/plugin";
         this.plugin_instances = {};
         this.plugin_tables = [];
+        this.menu = [];
         this.switch = null;
 
         this.initElement();
+        this.loadMenu();
         this.loadPlugins();
         this.showPlugin();
+    }
+
+    loadMenu () {
+        let that = this;
+        this.menuTemplate = [
+            { label : "Open Proxy", submenu : [
+                { label : 'Capture Start', click : function (menuItem, browserWindow, event) {
+                   that.switch.toggle();
+
+                    that.menuTemplate[0].submenu[0].label = that.switch.getValue() ? 'Capture Stop' : 'Capture Start';
+                    that.resetMenu();
+                }},
+                { type : 'separator' },
+                { role : 'close', label : 'Close', click : function () {
+                    that.close();
+                } }
+            ]},
+            { label: "View", submenu : [
+                { label : "Small Mode", click : function () {  that.setMode('small-mode');  this.checked = !this.checked; } },
+                { label : "Full Screen Mode", click : function () {  that.setMode('fullscreen-mode'); this.checked = !this.checked;  } },
+                { label : "Default Mode", checked : true,  click : function () {  that.setMode('default-mode'); this.checked = !this.checked;  } },
+                { type : 'separator' },
+                {
+                    label: 'Minimize',
+                    accelerator: 'CmdOrCtrl+M',
+                    role: 'minimize'
+                },
+                { type : 'separator' },
+                {
+                    role: 'toggledevtools'
+                }
+
+            ]}
+        ]
+
+        this.resetMenu();
+    }
+
+    resetMenu () {
+        this.menu = Menu.buildFromTemplate(this.menuTemplate);
+        Menu.setApplicationMenu(this.menu);
     }
 
     getTemplateRoot () {
@@ -37,6 +81,16 @@ module.exports = class App extends RenderPlugin {
         this.switch = jui.create("ui.switch", this.find(".proxy-switch"));
         
         this.initEvent ()
+    }
+
+    setMode (mode) {
+        if (mode == 'small-mode') {
+            this.$el.removeClass('fullscreen-mode default-mode').addClass('small-mode');
+        } else if (mode == 'fullscreen-mode') {
+            this.$el.removeClass('small-mode default-mode').addClass('fullscreen-mode');
+        } else {
+            this.$el.removeClass('small-mode fullscreen-mode').addClass('default-mode');
+        }
     }
 
     loadPlugins () {
