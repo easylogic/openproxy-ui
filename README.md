@@ -20,5 +20,12 @@ https://easylogic.github.io/openproxy-ui/
  
 ## To Use
 
+```
+npm start
+```
+
+## Screen
+
+<img src='https://easylogic.github.io/openproxy-ui/images/default.png' />
 
 #### License MIT

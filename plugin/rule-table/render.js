@@ -150,7 +150,9 @@ class RuleTable extends RenderPlugin{
         }
 
         this.$rule_items.find('.rule-item.empty').remove();
-        
+
+        this.collapseRuleItem();
+
         let rules = [];
         
         rules.push( this.checkRuleType({ checked : true, source : '', target : '', type : 'host' }));
@@ -161,7 +163,13 @@ class RuleTable extends RenderPlugin{
 
         this.$rule_items.append($item);
 
+        $item[0].scrollIntoView(true);
+
         this.reindexRuleItem();
+    }
+
+    collapseRuleItem () {
+        this.$rule_items.find('.rule-item').addClass('collapsed');
     }
 
     reloadPreview ($rule_item) {
