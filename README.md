@@ -1,6 +1,8 @@
 # openproxy-ui 
 
-**Front-End 개발자를 위한 Reverse Proxy**
+Reverse Proxy for Front-End Developers 
+
+# ElectronJS based 
 
 # Install
 
