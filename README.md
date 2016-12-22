@@ -189,6 +189,7 @@ https://easylogic.github.io/openproxy-ui/
 # To do 
 
 * linux, mac, window installer 제공 
+* rule table 공유하기 
 * ssl 인증서 지원
 * websocket frame 분석도구  
 * http 세션 분석 도구 (request, response) 
