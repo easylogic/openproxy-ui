@@ -14,7 +14,7 @@ npm start
   
 ```  
 
-# Documenations 
+# Documents 
 
 https://easylogic.github.io/openproxy-ui/
  
