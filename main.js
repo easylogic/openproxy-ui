@@ -71,14 +71,21 @@ app.on('activate', function () {
 })
 
 // when proxy is on
-app.on('proxyOn', function (isOn, settings) {
+app.on('proxyOn', function (isOn) {
+  if (isOn) {
+    ProxyManager.on(app.openproxy.host());
+  } else {
+    ProxyManager.off();
+  }
+
+})
+
+app.on('proxyStart', function (isOn) {
   if (isOn) {
     app.openproxy.trigger('reload');
     app.openproxy.init();
-    ProxyManager.on(app.openproxy.host());
   } else {
     app.openproxy.close();
-    ProxyManager.off();
   }
 
 })

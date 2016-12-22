@@ -36,6 +36,7 @@ class Settings extends RenderPlugin{
            items : [
                { type : 'group', title : this.i18n('Default Settings') },
                { title : this.i18n('Proxy Port'), key : 'port', value : '8888' },
+               { type : 'switch', title : this.i18n('Proxy On'), key : 'proxyOn', value : false },
                { title : this.i18n('Log Save Directory'), key : 'logSaveDirectory', value : '', render : function ($dom, item) {
 
                    var $group = $("<div class='' />");
@@ -83,11 +84,19 @@ class Settings extends RenderPlugin{
         this.set('settings', this.settingsProperty.getValue());
     }
 
+    proxyOn (isOn) {
+        this.emit('proxyOn', isOn);
+    }
+
     initEvent() {
         let that = this;
 
-        this.settingsProperty.on('change', function () {
+        this.settingsProperty.on('change', function (item, newValue, oldValue) {
             that.saveSettings();
+
+            if (item.key == 'proxyOn') {
+                that.proxyOn(item.value);
+            }
         })
     }
 }

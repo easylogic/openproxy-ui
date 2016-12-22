@@ -150,7 +150,7 @@ module.exports = class App extends RenderPlugin {
     switchOn (isOn) {
         this.set('on', isOn);
 
-        remote.app.emit('proxyOn', isOn, this.settings);
+        this.emit('proxyStart', isOn);
     }
 
     initEvent () {
