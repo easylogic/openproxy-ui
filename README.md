@@ -148,26 +148,43 @@ http://sample.easylogic.co.kr -> localhost:8888  -- 로컬 테스트 서버
 
 # Install
 
+아래와 같이 설치할 수 있습니다. 
+
 ```
 git clone https://github.com/easylogic/openproxy-ui.git 
 cd openproxy-ui 
 npm install 
-npm start 
   
 ```  
-
-# Documents 
-
-https://easylogic.github.io/openproxy-ui/
  
-## To Use
+# To Use
+
+Proxy 서버를 시작할려면 아래와 같이 합니다. 
 
 ```
 npm start
 ```
 
-## Screen
+## Screenshot
+
+### 기본 설정 화면 
 
 <img src='https://easylogic.github.io/openproxy-ui/images/default.png' />
+
+### Rule 설정 화면 
+
+<img src='https://easylogic.github.io/openproxy-ui/images/rule_table_add_rule.png' />
+
+# Plugin 시스템 
+
+Open Proxy 의 기본 구조는 모두 Plugin 시스템으로 되어 있습니다. 
+
+누구든지 소스를 가져다가 기본 정보 설정만으로 쉽게 확장 할 수 있습니다.
+ 
+
+# Documents 
+
+https://easylogic.github.io/openproxy-ui/
+
 
 #### License MIT
