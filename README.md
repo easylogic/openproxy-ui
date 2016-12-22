@@ -1,4 +1,4 @@
-# openproxy-ui 
+# Open Proxy 
 
 Reverse Proxy for Front-End Developers 
 
@@ -186,5 +186,19 @@ Open Proxy 의 기본 구조는 모두 Plugin 시스템으로 되어 있습니�
 
 https://easylogic.github.io/openproxy-ui/
 
+# To do 
+
+* ssl 인증서 지원
+* websocket frame 분석도구  
+* http 세션 분석 도구 (request, response) 
+* http 리소스 다운로드 받기 
+
+
+# Inspired
+
+* Fiddler AutoResponder (http://docs.telerik.com/fiddler/KnowledgeBase/AutoResponder)
+* Apache Reverse PRoxy (https://httpd.apache.org/docs/2.4/howto/reverse_proxy.html )
+* Apache Rewrite Module (https://httpd.apache.org/docs/2.0/en/misc/rewriteguide.html)
+* PLink (https://github.com/easylogic/plink)
 
 #### License MIT
