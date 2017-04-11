@@ -8,7 +8,7 @@ Front-End 개발자를 위해 만든 nodejs 와 electronjs 기반의  Reverse Pr
 
 Reverse Proxy 는  특정 http 요청을 내가 원하는 곳으로 보내는 기법입니다 
 
-일반적으로 Proxy Server 라고 하  Forward Proxy 라고 하는데요.  
+일반적으로 Proxy Server 라고 하면   Forward Proxy 라고 하는데요.  
 
 naver.com 라는 주소를 쳤을 때  Proxy 를 통해서 naver.com 을 가는 형태를 말합니다.
 
